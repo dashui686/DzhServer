@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
     <groupId>com.ruoyi</groupId>
     <artifactId>ruoyi</artifactId>
     <version>3.8.7</version>
@@ -11,7 +11,7 @@
     <name>ruoyi</name>
     <url>http://www.ruoyi.vip</url>
     <description>若依管理系统</description>
-    
+
     <properties>
         <ruoyi.version>3.8.7</ruoyi.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,6 +29,10 @@
         <poi.version>4.1.2</poi.version>
         <velocity.version>2.3</velocity.version>
         <jwt.version>0.9.1</jwt.version>
+        <hutool.version>5.8.16</hutool.version>
+
+        <activiti.version>6.0.0</activiti.version>
+        <activiti-modeler.version>5.23.0</activiti-modeler.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -106,6 +110,64 @@
                 <version>${velocity.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <!-- activiti 工作流 start ========================================== -->
+            <dependency>
+                <groupId>org.activiti</groupId>
+                <artifactId>activiti-spring-boot-starter-basic</artifactId>
+                <version>${activiti.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.mybatis</groupId>
+                        <artifactId>mybatis</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-security</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- Activiti 流程图 -->
+            <!-- activiti-diagram-rest模块用来处理流程图有关的功能：流程图布局（layout）、节点高亮等 -->
+            <dependency>
+                <groupId>org.activiti</groupId>
+                <artifactId>activiti-diagram-rest</artifactId>
+                <version>${activiti-modeler.version}</version>
+            </dependency>
+
+            <!-- Activiti 在线设计 -->
+            <!-- activiti-modeler模块提供模型先关的操作：创建、保存、转换json与xml格式等 -->
+            <dependency>
+                <groupId>org.activiti</groupId>
+                <artifactId>activiti-modeler</artifactId>
+                <version>${activiti-modeler.version}</version>
+            </dependency>
+
+            <!-- Activity6 集成 Modeler 需要 jar 包 -->
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>batik-transcoder</artifactId>
+                <version>1.8</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>batik-codec</artifactId>
+                <version>1.8</version>
+            </dependency>
+            <dependency>
+                <groupId>org.activiti</groupId>
+                <artifactId>activiti-json-converter</artifactId>
+                <version>6.0.0</version>
+            </dependency>
+
+            <!-- activiti 工作流 end ========================================== -->
+
             <!-- 阿里JSON解析器 -->
             <dependency>
                 <groupId>com.alibaba.fastjson2</groupId>
@@ -155,6 +217,14 @@
                 <version>${ruoyi.version}</version>
             </dependency>
 
+
+            <!-- 流程模块-->
+            <dependency>
+                <groupId>com.dashui</groupId>
+                <artifactId>ruoyi-act</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
             <!-- 通用工具-->
             <dependency>
                 <groupId>com.ruoyi</groupId>
@@ -172,6 +242,7 @@
         <module>ruoyi-quartz</module>
         <module>ruoyi-generator</module>
         <module>ruoyi-common</module>
+        <module>ruoyi-act</module>
     </modules>
     <packaging>pom</packaging>
 

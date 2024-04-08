@@ -4,7 +4,7 @@ import com.ruoyi.common.utils.StringUtils;
 
 /**
  * 分页数据
- * 
+ *
  * @author ruoyi
  */
 public class PageDomain
@@ -23,6 +23,22 @@ public class PageDomain
 
     /** 分页参数合理化 */
     private Boolean reasonable = true;
+
+    /**
+     * 获取结果当夜前页
+     * @return
+     */
+    public int getFirstResult(){
+        return (pageNum - 1)*pageSize;
+    }
+
+    /**
+     * 获取结果数据量
+     * @return
+     */
+    public int getMaxResult(){
+        return pageSize;
+    }
 
     public String getOrderBy()
     {
